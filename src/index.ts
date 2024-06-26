@@ -1,26 +1,25 @@
-import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-core';
-
-// Import the native module. On web, it will be resolved to ExpoProperties.web.ts
-// and on native platforms to ExpoProperties.ts
 import ExpoPropertiesModule from './ExpoPropertiesModule';
-import ExpoPropertiesView from './ExpoPropertiesView';
-import { ChangeEventPayload, ExpoPropertiesViewProps } from './ExpoProperties.types';
 
-// Get the native constant value.
-export const PI = ExpoPropertiesModule.PI;
-
-export function hello(): string {
-  return ExpoPropertiesModule.hello();
+export function setString(key: string, value: string): void {
+  return ExpoPropertiesModule.setString(key, value);
 }
 
-export async function setValueAsync(value: string) {
-  return await ExpoPropertiesModule.setValueAsync(value);
+export function getString(key: string): string | undefined {
+  return ExpoPropertiesModule.getString(key);
 }
 
-const emitter = new EventEmitter(ExpoPropertiesModule ?? NativeModulesProxy.ExpoProperties);
-
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener);
+export function setNumber(key: string, value: number): void {
+  return ExpoPropertiesModule.setNumber(key, value);
 }
 
-export { ExpoPropertiesView, ExpoPropertiesViewProps, ChangeEventPayload };
+export function getNumber(key: string): number {
+  return ExpoPropertiesModule.getNumber(key);
+}
+
+export function setBoolean(key: string, value: boolean): void {
+  return ExpoPropertiesModule.setBoolean(key, value);
+}
+
+export function getBoolean(key: string): boolean {
+  return ExpoPropertiesModule.getBoolean(key);
+}
